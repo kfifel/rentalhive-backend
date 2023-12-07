@@ -1,7 +1,6 @@
 package com.rentalhive.mapper;
 
 import com.rentalhive.domain.Equipment;
-import com.rentalhive.domain.EquipmentFamily;
 import com.rentalhive.dto.EquipmentDto;
 
 public class EquipmentDtoMapper {
@@ -14,7 +13,7 @@ public class EquipmentDtoMapper {
                 .id(equipment.getId())
                 .name(equipment.getName())
                 .quantity(equipment.getQuantity())
-                .equipmentFamilyId(equipment.getEquipmentFamily().getId())
+                .family(FamilyDtoMapper.toDto(equipment.getEquipmentFamily()))
                 .build();
     }
 
@@ -25,11 +24,7 @@ public class EquipmentDtoMapper {
                 .id(equipmentDto.getId())
                 .name(equipmentDto.getName())
                 .quantity(equipmentDto.getQuantity())
-                .equipmentFamily(
-                        EquipmentFamily.builder()
-                                .id(equipmentDto.getEquipmentFamilyId())
-                                .build()
-                )
+                .equipmentFamily(FamilyDtoMapper.toFamily(equipmentDto.getFamily()))
                 .build();
     }
 }

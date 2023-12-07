@@ -21,6 +21,6 @@ public class ResponseUserDto {
     private String email;
     private LocalDateTime createdAt;
     private LocalDateTime verifiedAt;
-    private List<Long> rolesId;
+    private List<String> authorities;
     private String organizationName;
 }

@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,6 +13,6 @@ import javax.validation.constraints.NotNull;
 public class EquipmentResponseDTO {
     private Long id;
     private String name;
-    private Long quantityAvailable;
+    private Long quantity;
     private EquipmentFamily equipmentFamily;
 }

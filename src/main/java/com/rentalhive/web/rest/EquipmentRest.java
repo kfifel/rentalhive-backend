@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/equipment")
+@RequestMapping("/api/v1/equipment")
 @RequiredArgsConstructor
 public class EquipmentRest {
 

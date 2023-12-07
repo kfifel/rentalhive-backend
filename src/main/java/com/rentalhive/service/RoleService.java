@@ -4,14 +4,15 @@ import com.rentalhive.utils.ValidationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface RoleService {
-    public Role save(Role role) throws ValidationException;
-    public Role findByName(String name) ;
-    public List<Role> getALlRoles();
-    public void delete(Long id);
+    Role save(Role role) throws ValidationException;
+    Optional<Role> findByName(String name) ;
+    List<Role> getALlRoles();
+    void delete(Long id);
 
-    public Role findById(Long id);
+    Role findById(Long id);
 
 }

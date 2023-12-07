@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/role")
+@RequestMapping("/api/v1/role")
 public class RoleController {
 
     private final RoleService roleService;
@@ -54,14 +55,23 @@ public class RoleController {
         return new ResponseEntity<>(roleDtos,HttpStatus.OK);
     }
     @GetMapping("/{name}")
-    public ResponseEntity<RoleDto> getRoleWithName(@PathVariable("name") String name)
+    public ResponseEntity<Response<RoleDto>> getRoleWithName(@PathVariable("name") String name)
     {
         Role role = new Role();
         role.setName(name);
-        Role roleOptional = roleService.findByName(name);
-
-
-        return new ResponseEntity<>(RoleDtoMapper.toDto(roleOptional),HttpStatus.NOT_FOUND);
+        Optional<Role> roleOptional = roleService.findByName(name);
+        if(roleOptional.isPresent()) {
+            RoleDto dto = RoleDtoMapper.toDto(roleOptional.get());
+            return ResponseEntity.ok().body(Response.<RoleDto>builder()
+                    .result(dto)
+                    .message("Role has been found")
+                    .build());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                Response.<RoleDto>builder()
+                        .message("Role has not been found")
+                        .build()
+        );
     }
 
     @DeleteMapping("/{id}")

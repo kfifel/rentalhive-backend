@@ -15,9 +15,9 @@ public class UserDtoMapper {
 
     public static User toEntity(RequestUserDto userDto) {
         List<Role> roles = new ArrayList<>();
-        if(userDto.getRolesId() != null){
-            for (Long roleId : userDto.getRolesId()) {
-                roles.add(Role.builder().id(roleId).build());
+        if(userDto.getAuthorities() != null){
+            for (String role : userDto.getAuthorities()) {
+                roles.add(Role.builder().name(role).build());
             }
         }
         return User.builder()
@@ -40,7 +40,7 @@ public class UserDtoMapper {
                 .email(user.getEmail())
                 .createdAt(user.getCreatedAt())
                 .verifiedAt(user.getVerifiedAt())
-                .rolesId(user.getRoles().stream().map(Role::getId).toList())
+                .authorities(user.getRoles().stream().map(Role::getName).toList())
                 .organizationName(user.getOrganization().getName())
                 .build();
     }

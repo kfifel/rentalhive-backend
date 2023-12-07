@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/orders")
+@RequestMapping("/api/v1/order")
 @RequiredArgsConstructor
 public class OrderController {
 

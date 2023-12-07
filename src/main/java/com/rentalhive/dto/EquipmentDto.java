@@ -21,6 +21,6 @@ public class EquipmentDto {
     @NotNull(message = "Equipment must not be null")
     @Min(value = 0, message = "Quantity must be greater than or equal to 0")
     private Integer quantity;
-    @NotNull(message = "Equipment must not be null")
-    private Long equipmentFamilyId;
+    @NotNull(message = "Equipment family must not be null")
+    private FamilyDto family;
 }

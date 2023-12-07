@@ -31,8 +31,8 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role findByName(String name) {
-        return roleRepository.findByName(name).orElse(null);
+    public Optional<Role> findByName(String name) {
+        return roleRepository.findByName(name);
     }
 
     @Override
@@ -52,9 +52,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role findById(Long id) {
-        return roleRepository.findById(id).get();
+        Optional<Role> roleOptional = roleRepository.findById(id);
+        if(roleOptional.isEmpty())
+            throw new IllegalArgumentException("role doesn't exist with this id: " + id);
+        return roleOptional.get();
     }
-
-
-
 }

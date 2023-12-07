@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -33,10 +32,10 @@ public class RequestUserDto {
     private String email;
 
     @NotBlank(message = "Password cannot be blank")
-    @Min(value = 8,message = "Password should be at least 8 characters")
+    //@Min(value = 6,message = "Password should be at least 6 characters")
     private String password;
 
-    private List<Long> rolesId;
+    private List<String> authorities;
 
     @NotNull(message = "Organization cannot be null")
     private OrganizationDto organization;

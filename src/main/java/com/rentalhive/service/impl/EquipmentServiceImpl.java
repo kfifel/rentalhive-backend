@@ -37,6 +37,7 @@ public class EquipmentServiceImpl implements EquipmentService {
         Optional<Equipment> optionalEquipment = equipmentRepository.findByName(equipment.getName());
         if(optionalEquipment.isPresent())
             throw new ValidationException(new CustomError("name","Equipment name already exists"));
+        equipment.setEquipmentFamily(optionalEquipmentFamily.get());
         equipment = equipmentRepository.save(equipment);
 
         List<EquipmentItem> equipmentItems = createEquipmentItems(equipment.getQuantity(), equipment);
@@ -66,7 +67,7 @@ public class EquipmentServiceImpl implements EquipmentService {
         if(equipmentOptional.isEmpty())
             throw new ValidationException( new CustomError("id","Equipment doesn't exist"));
         if(equipment.getQuantity() < equipmentOptional.get().getQuantity())
-            throw new RuntimeException("Quantity can't be less than the previous one");
+            throw new ValidationException(new CustomError("quantity","Quantity can't be less than the previous one"));
         return equipmentRepository.save(equipment);
     }
 
