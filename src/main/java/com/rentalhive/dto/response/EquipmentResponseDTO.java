@@ -14,5 +14,5 @@ public class EquipmentResponseDTO {
     private Long id;
     private String name;
     private Long quantity;
-    private EquipmentFamily equipmentFamily;
+    private EquipmentFamily family;
 }

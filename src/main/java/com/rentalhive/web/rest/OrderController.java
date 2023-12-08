@@ -1,5 +1,6 @@
 package com.rentalhive.web.rest;
 
+import com.rentalhive.domain.Order;
 import com.rentalhive.dto.OrderDto;
 import com.rentalhive.dto.response.OrderResponseDto;
 import com.rentalhive.service.OrderService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/order")
@@ -18,9 +20,9 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping
-    public ResponseEntity<?> finAll() {
+    public ResponseEntity<Response<List<Order>>> finAll() {
         return ResponseEntity.ok().body(
-                Response.builder()
+                Response.<List<Order>>builder()
                         .message("fetching all orders")
                         .result(orderService.findAll())
                         .build()
